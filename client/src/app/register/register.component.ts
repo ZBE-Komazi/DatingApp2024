@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { ToastrService } from 'ngx-toastr';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter();
-  model: any = {}
   registerForm: FormGroup = new FormGroup({});
   maxDate: Date = new Date();
   validationErrors: string[] | undefined;
@@ -19,8 +18,8 @@ export class RegisterComponent implements OnInit {
   constructor(private accountService: AccountService, private toastr: ToastrService, 
     private fb: FormBuilder, private router: Router) { }
 
-  ngOnInit(): void{
-    	this.initializeForm();
+  ngOnInit(): void {
+		this.initializeForm();
     this.maxDate.setFullYear(this.maxDate.getFullYear() - 18); 
   }
 
@@ -45,19 +44,19 @@ export class RegisterComponent implements OnInit {
       return control?.value === control?.parent?.get(matchTo)?.value ? null : {isMatching: true}
     }
   }
-  
+
   register() {
     const dob = this.GetDateOnly(this.registerForm.controls['dateOfBirth'].value)
     const values = {...this.registerForm.value, dateOfBirth: this.GetDateOnly(dob)}
     this.accountService.register(values).subscribe({
       next: response => {
         this.router.navigateByUrl('/members');
-    },
-    error: error => {
-      this.validationErrors = error;
-    }
-  })
-}
+      },
+      error: error => {
+        this.validationErrors = error;
+      } 
+    })
+  }
 
   cancel() {
     this.cancelRegister.emit(false);
@@ -70,4 +69,3 @@ export class RegisterComponent implements OnInit {
   }
 
 }
-
