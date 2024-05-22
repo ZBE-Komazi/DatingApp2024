@@ -1,19 +1,18 @@
-# fly.toml app configuration file generated for komazidatingapp on 2024-05-16T11:54:48+02:00
+# fly.toml app configuration file generated for datingapp22019098256 on 2024-05-16T15:23:20+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'komazidatingapp'
+app = 'datingapp22019098256'
 primary_region = 'jnb'
 
 [build]
   image = 'zintlekomazi22/datingapp:latest'
 
-
 [env]
-  ASPNETCORE_URLS="http://+:8080"
-  CloudinarySettings__CloudName="dbu2awblm"
-  CloudinarySettings__ApiKey="128938913825563"
+  ASPNETCORE_URLS = 'http://+:8080'
+  CloudinarySettings__ApiKey = '128938913825563'
+  CloudinarySettings__CloudName = 'dbu2awblm'
 
 [http_service]
   internal_port = 8080
