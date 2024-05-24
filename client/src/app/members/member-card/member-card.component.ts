@@ -21,4 +21,11 @@ export class MemberCardComponent {
     })
   }
 
+
+  addVisit(member: Member) {
+    this.memberService.addVisit(member.userName).subscribe({
+      next: () => console.log('Visit tracked for ' + member.knownAs),
+      error: (err) => console.error('Failed to track visit', err)
+    });
+  }
 }

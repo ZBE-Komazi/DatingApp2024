@@ -14,6 +14,8 @@ import { preventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.gu
 import { memberDetailedResolver } from './_resolvers/member-detailed.resolver';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { adminGuard } from './_guards/admin.guard';
+import { VipPanelComponent } from './vip/vip-panel/vip-panel.component';
+import { vipGuard } from './_guards/vip.guard';
 
 
 const routes: Routes = [
@@ -28,7 +30,8 @@ const routes: Routes = [
       {path: 'member/edit', component: MemberEditComponent, canDeactivate: [preventUnsavedChangesGuard]},
       {path: 'lists', component: ListsComponent},
       {path: 'messages', component: MessagesComponent},
-      {path: 'admin', component: AdminPanelComponent, canActivate: [adminGuard]}
+      {path: 'admin', component: AdminPanelComponent, canActivate: [adminGuard]},
+      {path: 'vip', component: VipPanelComponent, canActivate: [vipGuard]}
     ]
   },
   {path: 'errors', component: TestErrorComponent},

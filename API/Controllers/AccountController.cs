@@ -61,7 +61,7 @@ public class AccountController : BaseApiController
 
         var result = await _userManager.CheckPasswordAsync(user, loginDto.Password);
 
-        if (!result) return Unauthorized();
+        if (!result) return Unauthorized("Invalid password");
 
         return new UserDto
         {

@@ -23,6 +23,7 @@ public class Seed
                 new AppRole{Name = "Member"},
                 new AppRole{Name = "Admin"},
                 new AppRole{Name = "Moderator"},
+                new AppRole{Name = "VIP"},
             };
 
         foreach (var role in roles)
@@ -32,6 +33,7 @@ public class Seed
 
         foreach (var user in users)
         {
+            user.Photos.First().IsApproved = true;
             user.UserName = user.UserName.ToLower();
 
             await userManager.CreateAsync(user, "Pa$$w0rd");
@@ -44,6 +46,6 @@ public class Seed
         };
 
         await userManager.CreateAsync(admin, "Pa$$w0rd");
-        await userManager.AddToRolesAsync(admin, new[] { "Admin", "Moderator" });
+        await userManager.AddToRolesAsync(admin, new[] { "Admin", "Moderator","VIP" });
     }
 }

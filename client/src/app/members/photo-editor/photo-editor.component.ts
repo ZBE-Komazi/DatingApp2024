@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
 export class PhotoEditorComponent implements OnInit {
   @Input() member: Member | undefined;
   uploader: FileUploader | undefined;
-  hasBaseDropzoneOver = false;
+  hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
   user: User | undefined;
 
@@ -26,19 +26,19 @@ export class PhotoEditorComponent implements OnInit {
         if (user) this.user = user
       }
     })
-  }
+   }
 
   ngOnInit(): void {
     this.initializeUploader();
   }
 
   fileOverBase(e: any) {
-    this.hasBaseDropzoneOver = e;
+    this.hasBaseDropZoneOver = e;
   }
 
   setMainPhoto(photo: Photo) {
     this.memberService.setMainPhoto(photo.id).subscribe({
-      next: _ => {
+      next: () => {
         if (this.user && this.member) {
           this.user.photoUrl = photo.url;
           this.accountService.setCurrentUser(this.user);
@@ -56,7 +56,7 @@ export class PhotoEditorComponent implements OnInit {
     this.memberService.deletePhoto(photoId).subscribe({
       next: _ => {
         if (this.member) {
-          this.member.photos = this.member?.photos.filter(x => x.id !== photoId)
+          this.member.photos = this.member.photos.filter(x => x.id !== photoId);
         }
       }
     })
@@ -74,7 +74,7 @@ export class PhotoEditorComponent implements OnInit {
     });
 
     this.uploader.onAfterAddingFile = (file) => {
-      file.withCredentials = false;
+      file.withCredentials = false
     }
 
     this.uploader.onSuccessItem = (item, response, status, headers) => {
@@ -89,4 +89,5 @@ export class PhotoEditorComponent implements OnInit {
       }
     }
   }
+
 }

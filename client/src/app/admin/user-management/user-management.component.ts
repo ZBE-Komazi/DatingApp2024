@@ -9,13 +9,16 @@ import { RolesModalComponent } from 'src/app/modals/roles-modal/roles-modal.comp
   templateUrl: './user-management.component.html',
   styleUrls: ['./user-management.component.css']
 })
+
+
 export class UserManagementComponent implements OnInit {
   users: User[] = [];
   bsModalRef: BsModalRef<RolesModalComponent> = new BsModalRef<RolesModalComponent>();
   availableRoles = [
     'Admin',
     'Moderator',
-    'Member'
+    'Member',
+    'VIP'
   ]
 
   constructor(private adminService: AdminService, private modalService: BsModalService) { }
